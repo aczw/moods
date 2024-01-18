@@ -1,5 +1,6 @@
 {
   "name": "moods",
+  "type": "module",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -9,12 +10,14 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@t3-oss/env-nextjs": "^0.7.3",
     "@vercel/postgres": "^0.5.1",
     "clsx": "^2.1.0",
     "drizzle-orm": "^0.29.3",
     "next": "14.0.4",
     "react": "^18",
-    "react-dom": "^18"
+    "react-dom": "^18",
+    "zod": "^3.22.4"
   },
   "devDependencies": {
     "@types/node": "^20",
