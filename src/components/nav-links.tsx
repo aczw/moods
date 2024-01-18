@@ -4,10 +4,11 @@ import { clsx } from "clsx";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
-const links: { name: string; url: string }[] = [
-  { name: "/ (root)", url: "/" },
-  { name: "/dashboard", url: "/dashboard" },
-  { name: "/test", url: "/test" },
+const links: { name: string; href: string }[] = [
+  { name: "/ (root)", href: "/" },
+  { name: "/create", href: "/create" },
+  { name: "/dashboard", href: "/dashboard" },
+  { name: "/test", href: "/test" },
 ];
 
 const NavLinks = () => {
@@ -17,12 +18,12 @@ const NavLinks = () => {
     <nav className="bg-blue-100">
       navigation:
       <span className="inline-flex gap-2">
-        {links.map(({ name, url }) => (
+        {links.map(({ name, href }) => (
           <Link
             key={name}
-            href={url}
+            href={href}
             className={clsx({
-              "font-bold": pathname === url,
+              "font-bold": pathname === href,
             })}
           >
             {name}

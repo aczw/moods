@@ -1,10 +1,10 @@
 import "@/app/globals.css";
-import { Header } from "@/components/header";
+import { Header } from "@/components/layout/header";
 import { inter } from "@/util/fonts";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "wow",
+  title: "MOODS TEST",
   description: "incredibleness",
 };
 

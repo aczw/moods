@@ -1,4 +1,4 @@
-import { NavLinks } from "./nav-links";
+import { NavLinks } from "@/components/nav-links";
 
 const Header = () => {
   return (
