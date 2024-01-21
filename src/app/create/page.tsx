@@ -1,3 +1,4 @@
+import { SubmitButton } from "@/components/submit-button";
 import { createMoodEntry } from "@/util/actions";
 
 const Page = () => {
@@ -53,12 +54,7 @@ const Page = () => {
           />
         </div>
 
-        <button
-          type="submit"
-          className="border border-black"
-        >
-          Submit
-        </button>
+        <SubmitButton />
       </form>
     </main>
   );

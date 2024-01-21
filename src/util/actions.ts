@@ -12,17 +12,17 @@ const MoodEntrySchema = z.object({
 });
 
 const createMoodEntry = async (formData: FormData) => {
-  const parseResult = MoodEntrySchema.safeParse({
+  const parsed = MoodEntrySchema.safeParse({
     day: formData.get("day"),
     mood: formData.get("mood"),
     notes: formData.get("notes"),
   });
 
-  if (!parseResult.success) {
+  if (!parsed.success) {
     return { message: "l;skfl;skg" };
   }
 
-  const { mood, day, notes } = parseResult.data;
+  const { mood, day, notes } = parsed.data;
 
   try {
     await db.insert(moods).values({
