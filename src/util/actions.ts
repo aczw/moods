@@ -11,15 +11,25 @@ const MoodEntrySchema = z.object({
   notes: z.string(),
 });
 
-const createMoodEntry = async (formData: FormData) => {
+type Status = { status: "ok" } | { status: "error"; message: string };
+
+const createMoodEntry = async (
+  currState: Status,
+  formData: FormData,
+): Promise<Status> => {
   const parsed = MoodEntrySchema.safeParse({
     day: formData.get("day"),
     mood: formData.get("mood"),
     notes: formData.get("notes"),
   });
 
+  console.log("current state:", currState);
+
   if (!parsed.success) {
-    return { message: "l;skfl;skg" };
+    return {
+      status: "error",
+      message: `Form data was invalid! Message: ${parsed.error.message}`,
+    };
   }
 
   const { mood, day, notes } = parsed.data;
@@ -31,11 +41,13 @@ const createMoodEntry = async (formData: FormData) => {
       notes,
     });
   } catch (error) {
-    return { message: "Unable to create mood entry" };
+    return {
+      status: "error",
+      message: `Unable to create mood entry: ${error}`,
+    };
   }
 
-  // [TODO) revalidatePath
   redirect("/");
 };
 
-export { createMoodEntry };
+export { createMoodEntry, type Status };

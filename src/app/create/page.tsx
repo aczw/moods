@@ -1,7 +1,14 @@
+"use client";
+
 import { SubmitButton } from "@/components/submit-button";
 import { createMoodEntry } from "@/util/actions";
+import { useFormState } from "react-dom";
 
 const Page = () => {
+  const [state, formAction] = useFormState(createMoodEntry, {
+    status: "ok",
+  });
+
   const today = new Date();
   const formatted = `${today.getFullYear()}-${(
     "0" +
@@ -12,9 +19,15 @@ const Page = () => {
     <main className="flex min-h-screen flex-col items-center justify-center">
       <h2 className="font-bold">How are you feeling today?</h2>
 
+      {state.status === "error" ?
+        <div className="bg-red-100 text-red-600">
+          shit happened, look: {state.message}
+        </div>
+      : null}
+
       <form
         className="space-y-5"
-        action={createMoodEntry}
+        action={formAction}
       >
         <div>
           <label htmlFor="day">Day</label>
